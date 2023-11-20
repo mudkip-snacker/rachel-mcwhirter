@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const login = () => {};
   return (
     <div className="login">
@@ -8,13 +10,13 @@ function Login() {
       <input
         placeholder="Username"
         onChange={(event) => {
-          setUser({ ...user, username: event.target.value });
+          setUsername(event.target.value);
         }}
       />
       <input
         placeholder="Password"
         onChange={(event) => {
-          setUser({ ...user, password: event.target.value });
+          setPassword(event.target.value);
         }}
       />
       <button onClick={login}>Login</button>
