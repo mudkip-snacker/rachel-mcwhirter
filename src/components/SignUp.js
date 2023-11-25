@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
+import Cookies from 'universal-cookie';
 
-function SignUp() {
+function SignUp({ setIsAuth }) {
+  const cookies = new Cookies();
   const [user, setUser] = useState(null);
 
-  const signUp = () => {};
+  const signUp = () => {
+    Axios.post('https://rachelmcwhirter.com/signup', user).then((res) => {
+      const { token, userId, firstName, lastName, username, hashedPassword } =
+        res.data;
+
+      cookies.set('token', token);
+      cookies.set('userId', userId);
+      cookies.set('username', username);
+      cookies.set('firstName', firstName);
+      cookies.set('lastName', lastName);
+      cookies.set('hashedPassword', hashedPassword);
+      setIsAuth(true);
+    });
+  };
   return (
     <div className="signUp">
       <label>Sign Up</label>
